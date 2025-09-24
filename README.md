@@ -133,3 +133,41 @@ src/main/java/com/qmtech/scheduledlive
 
 ## 📜 License
 MIT (or your chosen license)
+
+
+----
+
+
+### Assumptions
+
+The following assumptions were made while implementing the solution:
+
+***
+
+### 🏗️ Architectural & Infrastructure
+
+* **RabbitMQ & PostgreSQL via Docker** – RabbitMQ and PostgreSQL are expected to run via the provided `docker-compose.yml` file for local development.
+* **Single-node environment** – The setup assumes a single-node/local environment without clustering or scaling considerations.
+* **Default Ports & Credentials** – RabbitMQ and PostgreSQL use default ports and credentials defined in `docker-compose.yml`; no external secrets manager is used.
+
+***
+
+### ⚡ Application Logic
+
+* **Poll Start Time** – Votes are only valid after the `scheduledStartTime` of a poll. The system clock is assumed to be reliable and synchronized.
+* **Vote Persistence** – Votes are processed asynchronously through RabbitMQ, assuming stable message delivery with no dead-letter queue configured.
+* **Single Vote Counting** – Duplicate votes by the same user are not restricted.
+* **Poll Options** – Poll options are stored as a JSON array in the database and assumed to remain in this format.
+
+***
+
+### 💻 Frontend/UI
+
+* **Static UI Served from Backend** – The HTML/JS frontend is served directly from the Spring Boot application and connects to REST and WebSocket endpoints on the same origin.
+* **Browser Support** – Requires a modern browser with WebSocket and ES6+ JavaScript support.
+
+***
+
+### 🔒 Security
+
+* **Open Access** – No authentication or authorization is enforced. Any user can create polls and vote.
