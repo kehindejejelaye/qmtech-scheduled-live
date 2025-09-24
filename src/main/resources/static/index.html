@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poll WebSocket Test Client</title>
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+<div class="container">
+  <h1>🚀 Poll WebSocket Tester</h1>
+
+  <!-- WebSocket Connection -->
+  <div class="section">
+    <div id="status" class="status disconnected">
+      ❌ Disconnected
+    </div>
+
+    <div class="form-group">
+      <label for="wsUrl">WebSocket URL:</label>
+      <input type="text" id="wsUrl" value="ws://localhost:8080/ws/poll" placeholder="ws://localhost:8080/ws/poll">
+    </div>
+
+    <button id="connectBtn">Connect to WebSocket</button>
+  </div>
+
+<!--  &lt;!&ndash; Create Poll &ndash;&gt;-->
+<!--  <div class="section">-->
+<!--    <h2>📋 Create New Poll</h2>-->
+<!--    <div class="form-group">-->
+<!--      <label for="pollQuestion">Poll Question:</label>-->
+<!--      <input type="text" id="pollQuestion" placeholder="What's your favorite programming language?">-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <label for="pollOptions">Poll Options (comma separated):</label>-->
+<!--      <input type="text" id="pollOptions" placeholder="Java, Python, JavaScript, Go" value="Option A, Option B, Option C">-->
+<!--    </div>-->
+<!--    <button id="createPollBtn">🎯 Create Poll</button>-->
+<!--  </div>-->
+
+  <!-- Create Poll -->
+  <div class="section">
+    <h2>📋 Create New Poll</h2>
+    <div class="form-group">
+      <label for="pollQuestion">Poll Question:</label>
+      <input type="text" id="pollQuestion" placeholder="What's your favorite programming language?">
+    </div>
+    <div class="form-group">
+      <label for="pollOptions">Poll Options (comma separated):</label>
+      <input type="text" id="pollOptions" placeholder="Java, Python, JavaScript, Go" value="Option A, Option B, Option C">
+    </div>
+
+    <!-- ✅ NEW FIELD -->
+    <div class="form-group">
+      <label for="pollStartTime">Scheduled Start Time:</label>
+      <input type="datetime-local" id="pollStartTime">
+    </div>
+
+    <button id="createPollBtn">🎯 Create Poll</button>
+  </div>
+
+  <!-- Get Poll -->
+  <div class="section">
+    <h2>🔍 Get Poll by ID</h2>
+    <div class="form-group">
+      <label for="getPollId">Poll ID (UUID):</label>
+      <input type="text" id="getPollId" value="550e8400-e29b-41d4-a716-446655440000">
+    </div>
+    <button id="getPollBtn">📊 Get Poll Details</button>
+  </div>
+
+  <!-- Subscribe -->
+  <div class="section">
+    <h2>📡 Subscribe to Poll Updates</h2>
+    <div class="form-group">
+      <label for="pollId">Poll ID (UUID):</label>
+      <input type="text" id="pollId" value="550e8400-e29b-41d4-a716-446655440000">
+    </div>
+    <button id="subscribeBtn" disabled>🔔 Subscribe to Poll</button>
+  </div>
+
+  <!-- Live Subscribed Poll Details -->
+  <div class="section">
+    <h2>📡 Subscribed Poll Details</h2>
+    <pre id="subscribedPollDetails">{}</pre>
+  </div>
+
+
+  <!-- Vote -->
+  <div class="section">
+    <h2>🗳️ Vote on Poll</h2>
+    <div class="form-group">
+      <label for="votePollId">Poll ID (UUID):</label>
+      <input type="text" id="votePollId" value="550e8400-e29b-41d4-a716-446655440000">
+    </div>
+    <div class="form-group">
+      <label for="voteOption">Vote for Option:</label>
+      <input type="text" id="voteOption" placeholder="Option A" value="Option A">
+    </div>
+    <div class="form-group">
+      <label for="voteUsername">Your Name:</label>
+      <input type="text" id="voteUsername" placeholder="Enter your name">
+    </div>
+    <button id="voteBtn">✅ Cast Vote</button>
+  </div>
+
+  <!-- ✅ Poll List Table -->
+  <div class="section">
+    <h2>📑 Available Polls</h2>
+    <button id="refreshPollsBtn">🔄 Refresh Poll List</button>
+    <table id="pollsTable">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Question</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Filled dynamically -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Messages -->
+  <div class="section">
+    <h2>💬 Messages</h2>
+    <div id="messages" class="messages">
+      <div class="message">
+        <div class="message-type">Info</div>
+        <div class="message-content">Click "Connect to WebSocket" to start testing!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- External JS -->
+<script src="js/polls.js"></script>
+</body>
+</html>

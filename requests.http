@@ -1,0 +1,41 @@
+@baseUrl = http://localhost:8080/api/v1
+
+### Create a new poll
+POST {{baseUrl}}/polls
+Content-Type: application/json
+
+//{
+//  "question": "What's your favorite programming language?",
+//  "options": [
+//    "Java",
+//    "Python",
+//    "JavaScript",
+//    "C#"
+//  ],
+//  "scheduledStartTime": "2025-10-24T10:00:00.000Z"
+//}
+
+{
+  "question": "Best breakfast beverage?",
+  "options": [
+    "Coffee",
+    "Tea",
+    "Juice",
+    "Water"
+  ],
+  "scheduledStartTime": "2025-09-24T07:00:00.000Z"
+}
+### Get poll details
+#GET {{baseUrl}}/polls/04c4f6ec-ffdd-4ac8-8443-13a018c92287
+GET {{baseUrl}}/polls/a4deef08-90db-4dca-b731-6f86dc35f804
+
+### Cast a vote
+#POST {{baseUrl}}/polls/04c4f6ec-ffdd-4ac8-8443-13a018c92287/vote
+#POST {{baseUrl}}/polls/a4deef08-90db-4dca-b731-6f86dc35f804/vote
+POST {{baseUrl}}/polls/0f20c361-0bcc-4b00-ac63-45f37869d36e/vote
+Content-Type: application/json
+
+{
+  "username": "abc@example+4.com",
+  "option": "Water"
+}
